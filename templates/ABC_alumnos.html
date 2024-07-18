@@ -1,0 +1,45 @@
+{% from '_macros.html' import render_field %}
+{%import "_macros.html"as macros%}
+{% extends "layout2.html" %}
+
+
+
+{% block content%}
+
+<div class="cotainer">
+    <div class="row"></div>
+    <h1>Lista de alumnos</h1>
+    <a href="alumnos" class="btn btn-success"><i class="bi bi-pencil">Nuevos Registro</i></a>
+    <table class="table table-striped  table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apaterno</th>
+                <th>Amaterno</th>
+                <th>Email</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for alum in alumno%}
+            <tr>
+                
+                <td>{{alum.id}}</td>
+                <td>{{alum.nombre}}</td>
+                <td>{{alum.apaterno}}</td>
+                <td>{{alum.amaterno}}</td>
+                <td>{{alum.email}}</td>
+                <td><a href="modificar?id={{alum.id}}" class="btn btn-warning"><i class="bi bi-pencil">Modificar</i></a></td>
+                <td><a href="modificar?id={{alum.id}}" class="btn btn-danger"><i class="bi bi-trash">Eliminar</i></a></td>
+              
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock %}

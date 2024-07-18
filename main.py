@@ -1,4 +1,4 @@
-from flask import Flask , render_template, request,url_for
+from flask import Flask , render_template, request,url_for,redirect
 from flask_material import Material
 
 #proteccion de referencias cruzadas
@@ -30,6 +30,14 @@ def index():
     lista=["alex","martin","Luz"]
     return render_template("index.html", titulo=titulo , lista=lista)
 
+
+@app.route("/ABC_alumnos")
+def ABC_alumnos():
+    create_forms=forms.UserForm2(request.form)
+    alumno=Alumnos.query.all()
+    return render_template('ABC_alumnos.html',form=create_forms,alumno=alumno)
+
+
 @app.route("/alumnos",methods=['GET','POST'])
 def alumnos():
     alum_form=forms.UserForm2(request.form)
@@ -46,9 +54,9 @@ def alumnos():
         db.session.add(alum)
         #Guarda la informacion de ese insert que fue creada con ese objeto y la guarda
         db.session.commit()
-
-       
-        
+        mensaje='Registro Nuevo'
+        flash(mensaje)
+        return redirect(url_for('ABC_alumnos'))  
     return render_template('alumnos.html',form=alum_form)
 
 
