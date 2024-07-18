@@ -42,8 +42,9 @@ def alumnos():
                     amaterno=alum_form.amaterno.data,
                     email=alum_form.email.data)
 
-        #le decimos que envie la informacion a la base de datos a trabes del objeto, guardamos los cambios 
+        #Lo que hace la funcion add es añadir la informacion que ya obtuvo el objeto y lo manda a la base de datos
         db.session.add(alum)
+        #Guarda la informacion de ese insert que fue creada con ese objeto y la guarda
         db.session.commit()
 
        
