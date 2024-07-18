@@ -1,0 +1,54 @@
+{% from '_macros.html' import render_field %}
+{%import "_macros.html"as macros%}
+
+{% extends "layout2.html" %}
+
+{% block content%}
+<h1>Eliminar Alumnos</h1>
+<form action="" method="POST">
+    {{ form.csrf_token }}
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+
+    <div class="row control-group">
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.id, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.nombre, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.apaterno, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.amaterno, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.email, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            <input type='submit' class="btn btn-danger" value="Eliminar">
+            <a href="ABC_alumnos" class="btn btn-success">
+                <i class="icon-undo icon-white">Cancelar</i>
+            </a>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -59,6 +59,67 @@ def alumnos():
         return redirect(url_for('ABC_alumnos'))  
     return render_template('alumnos.html',form=alum_form)
 
+@app.route("/eliminar",methods=['GET','POST'])
+def eliminar():
+    alum_form=forms.UserForm2(request.form)
+
+    #Revisa si le das al boton para recibir los parametros, si no le mandas nada simplemente ejecuta la ventana
+    if request.method=='GET':
+        #toma el id del registro y lo manda a una variable
+        id=request.args.get('id')
+        #alumn1=select*from alumnos where id==id
+        alum1=db.session.query(Alumnos).filter(Alumnos.id==id).first()
+        #Guarda el id y lo envia a la caja de texto
+        alum_form.id.data=request.args.get('id')
+        #toma los datos almacenados en la variable alum1 y los manda a las variables del objeto alum_form
+        alum_form.nombre.data=alum1.nombre
+        alum_form.apaterno.data=alum1.apaterno
+        alum_form.amaterno.data=alum1.amaterno
+        alum_form.email.data=alum1.email
+
+    #Revisa se envio la instruccion a traves de un boton
+    if request.method=='POST':
+        id=alum_form.id.data
+        alum=Alumnos.query.get(id)
+        db.session.delete(alum)
+        db.session.commit()
+        return redirect(url_for('ABC_alumnos'))
+    #en cuanto da click al boton lo enviar a eliminar
+    return render_template('eliminar.html',form=alum_form)
+
+@app.route("/modificar",methods=['GET','POST'])
+def modificar():
+    alum_form=forms.UserForm2(request.form)
+
+    #Revisa si le das al boton para recibir los parametros, si no le mandas nada simplemente ejecuta la ventana
+    if request.method=='GET':
+        #toma el id del registro y lo manda a una variable
+        id=request.args.get('id')
+        #alumn1=select*from alumnos where id==id
+        alum1=db.session.query(Alumnos).filter(Alumnos.id==id).first()
+        #Guarda el id y lo envia a la caja de texto
+        alum_form.id.data=request.args.get('id')
+        #toma los datos almacenados en la variable alum1 y los manda a las variables del objeto alum_form
+        alum_form.nombre.data=alum1.nombre
+        alum_form.apaterno.data=alum1.apaterno
+        alum_form.amaterno.data=alum1.amaterno
+        alum_form.email.data=alum1.email
+
+    #Revisa se envio la instruccion a traves de un boton
+    if request.method=='POST':
+        id=alum_form.id.data
+        alum1=db.session.query(Alumnos).filter(Alumnos.id==id).first()
+        alum1.nombre=alum_form.nombre.data
+        alum1.apaterno=alum_form.apaterno.data
+        alum1.amaterno=alum_form.amaterno.data
+        alum1.email=alum_form.email.data
+        db.session.add(alum1)
+        db.session.commit()
+        return redirect(url_for('ABC_alumnos'))
+    #en cuanto da click al boton lo enviar a eliminar
+    return render_template('modificar.html',form=alum_form)
+
+       
 
 @app.route("/usuarios",methods=['GET','POST'])
 def usuarios():
