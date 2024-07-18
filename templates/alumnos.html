@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{%import "_macros" as macros%}
+{% from '_macros.html' import render_field %}
+
+<h1>Formulario Alumnos</h1>
+<form action="" method="POST">
+    <div class="row control-group">
+
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.nombre, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.apaterno, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.amaterno, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            {{macros.render_field(form.correo, class='form-control')}}
+        </div>
+    </div>
+
+    <div class="row control-group">
+
+        <div class="form-groupform-group col-xs-12 floating-label-from-group controls">
+            <input type submit class="btn btn success" value="Registrar">
+        </div>
+    </div>
+
+
+</form>
+
+
+{% endblock %}
