@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% from '_macros.html' import render_input %}
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <form action="/imprime" method="post">
+            <div class="form-floating mb-3">
+                <label for="floatingInput">Email</label>
+                {{render_input('email','Email')}}
+
+            </div>
+            <div class="form-floating">
+                <label for="floatingPassword">Password</label>
+                {{render_input('password','Password','password')}}
+            </div>
+            <div class="form-floating">
+                <input type="submit" class="btn btn-primary" value="enviar">
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}
