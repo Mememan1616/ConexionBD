@@ -15,11 +15,12 @@ class Alumnos(db.Model):
 
 class Maestros(db.Model):
     __tablename__='maestros'
-    matricula=db.Column(db.Integer,primary_key=True)
+    matricula=db.Column(db.String(5),primary_key=True)
     nombre=db.Column(db.String(100))
     apaterno=db.Column(db.String(100))
     amaterno=db.Column(db.String(100))
     email=db.Column(db.String(100))
+    tel=db.Column(db.String(100))
     sueldo=db.Column(db.DECIMAL)
 
 

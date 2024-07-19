@@ -9,6 +9,8 @@ from config import DevelopmentConfig
 from flask import g
 #manda a llamar la clase que contiene las tablas y el modelo de la bd
 from models import Alumnos
+#manda a llamar la clase que contiene las tablas y el modelo de la bd
+from models import Maestros
 #Manda mensajes cuando se genera una peticion 
 from flask import flash
 #Madamos a llamar el objeto de bd que nos ayudara a hacer las transacciones
@@ -58,6 +60,34 @@ def alumnos():
         flash(mensaje)
         return redirect(url_for('ABC_alumnos'))  
     return render_template('alumnos.html',form=alum_form)
+
+@app.route("/maestros",methods=['GET','POST'])
+def maestros():
+    #crea una variable forms para almacenar los datos de las cajas de texto
+    maestros_form=forms.MaestrosForm(request.form)
+
+    #revisa si es que se le dio click al boton para hacer el registro
+    if request.method=='POST':
+        #Para insertar un registro en la base de datos, es necesario, primero, contar con la instancia que se desea añadir. A continuación, agregarlo a la sesión de la base de datos y completar la acción con un commit.
+        #esa instancia manda a llamar la clase con la base de datos de que se encuentra en models
+        masters=Maestros(matricula=maestros_form.matricula.data,
+                        nombre=maestros_form.nombre.data,
+                        apaterno=maestros_form.apaterno.data,
+                        amaterno=maestros_form.amaterno.data,
+                        email=maestros_form.email.data,
+                        tel=maestros_form.tel.data,
+                        sueldo=maestros_form.sueldo.data)
+        #Lo que hace la funcion add es añadir la informacion que ya obtuvo el objeto y lo manda a la base de datos
+        db.session.add(masters)
+        #Guarda la informacion de ese insert que fue creada con ese objeto y la guarda
+        db.session.commit()
+        mensaje='Registro Nuevo'
+        flash(mensaje)
+    
+    return render_template('maestros.html',form=maestros_form)
+
+
+    
 
 @app.route("/eliminar",methods=['GET','POST'])
 def eliminar():

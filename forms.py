@@ -18,6 +18,7 @@ class UserForm2(Form):
     #primera parte es el nombre que tendra el campo, despues es el tipo y por ultimo el nombre de la etiqueta que va arriba del input
     #campo=tipodecampo('Etiqueta')
     id=IntegerField('id')
+
     nombre= StringField('Nombre', [
         validators.DataRequired(message='El nombre es requerido')
     ])
@@ -32,15 +33,20 @@ class UserForm2(Form):
         validators.email(message='Ingrese un correo valido')
     ])
 
-class Maestros(Form):
+class MaestrosForm(Form):
     #primera parte es el nombre que tendra el campo, despues es el tipo y por ultimo el nombre de la etiqueta que va arriba del input
     #campo=tipodecampo('Etiqueta')
-    matricula=IntegerField('Matricula')
+    matricula=StringField('Matricula',[
+        validators.DataRequired(message='El nombre es requerido')
+    ])
     nombre= StringField('Nombre',[
         validators.DataRequired(message='El nombre es requerido')
     ])
     apaterno=StringField('Apaterno',[
         validators.DataRequired(message='El apaterno es requerido')
+    ])
+    amaterno=StringField('Amaterno',[
+        validators.DataRequired(message='El amaterno es requerido')
     ])
     email=EmailField('Correo',[
         validators.DataRequired(message='El correo es requerido'),
