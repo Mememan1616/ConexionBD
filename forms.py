@@ -42,10 +42,10 @@ class MaestrosForm(Form):
     nombre= StringField('Nombre',[
         validators.DataRequired(message='El nombre es requerido')
     ])
-    apaterno=StringField('Apaterno',[
+    apaterno=StringField('Apellido paterno',[
         validators.DataRequired(message='El apaterno es requerido')
     ])
-    amaterno=StringField('Amaterno',[
+    amaterno=StringField('Apellido materno',[
         validators.DataRequired(message='El amaterno es requerido')
     ])
     email=EmailField('Correo',[

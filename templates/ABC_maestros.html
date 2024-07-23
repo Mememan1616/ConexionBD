@@ -1,0 +1,48 @@
+{% from '_macros.html' import render_field %}
+{%import "_macros.html"as macros%}
+{% extends "layout2.html" %}
+
+
+
+{% block content%}
+
+<div class="cotainer">
+    <div class="row"></div>
+    <h1>Lista de maestros</h1>
+    <a href="maestros" class="btn btn-success"><i class="bi bi-pencil">Nuevos Registro</i></a>
+    <table class="table table-striped  table-bordered">
+        <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Nombre</th>
+                <th>Apaterno</th>
+                <th>Amaterno</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Sueldo</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for maestro in maestros%}
+            <tr>
+                <td>{{maestro.matricula}}</td>
+                <td>{{maestro.nombre}}</td>
+                <td>{{maestro.apaterno}}</td>
+                <td>{{maestro.amaterno}}</td>
+                <td>{{maestro.email}}</td>
+                <td>{{maestro.tel}}</td>
+                <td>{{maestro.sueldo}}</td>
+                <td><a href="modificar?id={{maestros.id}}" class="btn btn-warning"><i class="bi bi-pencil">Modificar</i></a></td>
+                <td><a href="eliminar?id={{maestros.id}}" class="btn btn-danger"><i class="bi bi-trash">Eliminar</i></a></td>
+            </tr>
+            {%endfor%}
+            
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock %}

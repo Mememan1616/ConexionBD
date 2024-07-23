@@ -35,9 +35,20 @@ def index():
 
 @app.route("/ABC_alumnos")
 def ABC_alumnos():
+    #crea el objeto a partir del modelado antes diseñado
     create_forms=forms.UserForm2(request.form)
     alumno=Alumnos.query.all()
     return render_template('ABC_alumnos.html',form=create_forms,alumno=alumno)
+
+@app.route("/ABC_maestros")
+def ABC_maestros():
+    #manada a llamar al objeto de  maestros y usar l
+    create_forms=forms.MaestrosForm(request.form)
+    #hacemos la consulta de todos los datos en la tabla maestros
+    maestros=Maestros.query.all()
+    #manda a llamar al modulo y las variables que necesitara para funcionar
+    return render_template('ABC_maestros.html',form=create_forms,maestros=maestros)
+
 
 
 @app.route("/alumnos",methods=['GET','POST'])
