@@ -102,6 +102,7 @@ def maestros():
 
 @app.route("/eliminar",methods=['GET','POST'])
 def eliminar():
+    #manda a llamar la plantilla de los formularios y lo almacena en la variable
     alum_form=forms.UserForm2(request.form)
 
     #Revisa si le das al boton para recibir los parametros, si no le mandas nada simplemente ejecuta la ventana
@@ -127,6 +128,33 @@ def eliminar():
         return redirect(url_for('ABC_alumnos'))
     #en cuanto da click al boton lo enviar a eliminar
     return render_template('eliminar.html',form=alum_form)
+
+@app.route("/maestros_eliminar",methods=['GET','POST'])
+def maestros_eliminar():
+    maestro_form=forms.MaestrosForm(request.form)
+
+    if request.method=='GET':
+        
+        #toma la matricula del registro y lo manda a una variable
+        matricula=request.args.get('matricula')
+        #alumn1=select*from alumnos where id==id
+        mat1=db.session.query(Maestros).filter(Maestros.matricula==matricula).first()
+        #Guarda el id y lo envia a la caja de texto
+        maestro_form.matricula.data=request.args.get('matricula')
+        #toma los datos almacenados en la variable alum1 y los manda a las variables del objeto alum_form
+        maestro_form.nombre.data=mat1.nombre
+        maestro_form.apaterno.data=mat1.apaterno
+        maestro_form.amaterno.data=mat1.amaterno
+        maestro_form.email.data=mat1.email
+        maestro_form.tel.data=mat1.tel
+        maestro_form.sueldo.data=mat1.sueldo
+        
+    
+    return render_template('maestros_eliminar.html',form=maestro_form)
+
+
+   
+
 
 @app.route("/modificar",methods=['GET','POST'])
 def modificar():
@@ -159,6 +187,12 @@ def modificar():
         return redirect(url_for('ABC_alumnos'))
     #en cuanto da click al boton lo enviar a eliminar
     return render_template('modificar.html',form=alum_form)
+
+@app.route("/maestros_modificar",methods=['GET','POST'])
+def maestros_modificar():
+    return render_template('maestros_modificar.html')
+
+
 
        
 

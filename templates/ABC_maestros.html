@@ -34,8 +34,8 @@
                 <td>{{maestro.email}}</td>
                 <td>{{maestro.tel}}</td>
                 <td>{{maestro.sueldo}}</td>
-                <td><a href="modificar?id={{maestros.id}}" class="btn btn-warning"><i class="bi bi-pencil">Modificar</i></a></td>
-                <td><a href="eliminar?id={{maestros.id}}" class="btn btn-danger"><i class="bi bi-trash">Eliminar</i></a></td>
+                <td><a href="maestros_modificar?matricula={{maestro.matricula}}" class="btn btn-warning"><i class="bi bi-pencil">Modificar</i></a></td>
+                <td><a href="maestros_eliminar?matricula={{maestro.matricula}}" class="btn btn-danger"><i class="bi bi-trash">Eliminar</i></a></td>
             </tr>
             {%endfor%}
             
