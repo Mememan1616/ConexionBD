@@ -150,9 +150,13 @@ def maestros_eliminar():
         maestro_form.sueldo.data=mat1.sueldo
     
     if request.method=='POST':
+        #se crea una variable que obtenga la informacion de la caja de texto de la matricula
         matricula=maestro_form.matricula.data
+        #se crea un objeto con los valores de la tupla o registri seleccionado de la base de datos
         mat=Maestros.query.get(matricula)
+        #se manda a eliminar esa tupla o registro
         db.session.delete(mat)
+        #se guarda la informacion
         db.session.commit
         return redirect(url_for('ABC_maestros'))
 
