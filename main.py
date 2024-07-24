@@ -148,8 +148,14 @@ def maestros_eliminar():
         maestro_form.email.data=mat1.email
         maestro_form.tel.data=mat1.tel
         maestro_form.sueldo.data=mat1.sueldo
-        
     
+    if request.method=='POST':
+        matricula=maestro_form.matricula.data
+        mat=Maestros.query.get(matricula)
+        db.session.delete(mat)
+        db.session.commit
+        return redirect(url_for('ABC_maestros'))
+
     return render_template('maestros_eliminar.html',form=maestro_form)
 
 
@@ -190,7 +196,45 @@ def modificar():
 
 @app.route("/maestros_modificar",methods=['GET','POST'])
 def maestros_modificar():
-    return render_template('maestros_modificar.html')
+    maestro_form=forms.MaestrosForm(request.form)
+
+    if request.method=='GET':
+        
+        #toma la matricula del registro y lo manda a una variable
+        matricula=request.args.get('matricula')
+        #alumn1=select*from alumnos where id==id
+        mat1=db.session.query(Maestros).filter(Maestros.matricula==matricula).first()
+        #Guarda el id y lo envia a la caja de texto
+        maestro_form.matricula.data=request.args.get('matricula')
+        #toma los datos almacenados en la variable alum1 y los manda a las variables del objeto alum_form
+        maestro_form.nombre.data=mat1.nombre
+        maestro_form.apaterno.data=mat1.apaterno
+        maestro_form.amaterno.data=mat1.amaterno
+        maestro_form.email.data=mat1.email
+        maestro_form.tel.data=mat1.tel
+        maestro_form.sueldo.data=mat1.sueldo
+
+    #se busca si se realizo una peticion post
+    if request.method=='POST':
+        #se obtiene la matricula de la caja de texto
+        matricula=maestro_form.matricula.data
+        #se crea un obejeto que busque el campo a quien corresponde esa matricula y lo almacene
+        mat1=db.session.query(Maestros).filter(Maestros.matricula==matricula).first()
+        #se manda a llamar el objeto que tiene los valores y se le envian a los nuevos de las cajas de texto
+        mat1.nombre=maestro_form.nombre.data
+        mat1.apaterno=maestro_form.apaterno.data
+        mat1.amaterno=maestro_form.amaterno.data
+        mat1.email=maestro_form.email.data
+        mat1.tel=maestro_form.tel.data
+        mat1.sueldo=maestro_form.sueldo.data
+        #ejecuta la accion sqalchemy y modifica los valores
+        db.session.add(mat1)
+        #guarda los valores en la base de datos
+        db.session.commit()
+        #regresa al abc de maestros
+        return redirect(url_for('ABC_maestros'))
+        
+    return render_template('maestros_modificar.html',form=maestro_form)
 
 
 
