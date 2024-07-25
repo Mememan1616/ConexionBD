@@ -157,7 +157,7 @@ def maestros_eliminar():
         #se manda a eliminar esa tupla o registro
         db.session.delete(mat)
         #se guarda la informacion
-        db.session.commit
+        db.session.commit()
         return redirect(url_for('ABC_maestros'))
 
     return render_template('maestros_eliminar.html',form=maestro_form)
