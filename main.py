@@ -18,6 +18,10 @@ from models import db
 #importa los formularios 
 import forms
 
+#importar el archivo de maestros y alumnos
+from alumnos.alumnos_rutas import alumnos
+#from maestros.maestro_rutas import
+
 app=Flask(__name__)
 #Invocamos nuestra clase Decvelopment config para hacer referencia a la base de datos
 app.config.from_object(DevelopmentConfig)
@@ -25,12 +29,20 @@ app.config.from_object(DevelopmentConfig)
 Material(app)
 #Creamos una variable que almacene el CSRF
 csrf=CSRFProtect()
+app.register_blueprint(alumnos)
 
-@app.route("/")#Rutas
+
+@app.route("/index")#Rutas
 def index():
     titulo ="index de Titulo"
     lista=["alex","martin","Luz"]
     return render_template("index.html", titulo=titulo , lista=lista)
+
+#Ruta que encuentra los errores 404, es decir de las paginas web, no se caiga la pagina
+#El error 404 se refiere a que no encuentra la ruta de la pagina o mejor dicho el recurso
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'),404
 
 
 @app.route("/ABC_alumnos")

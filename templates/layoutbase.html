@@ -15,7 +15,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!--Call CSS-->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    
 
     <link rel="icon" href="static/img/UA.jpg" type="image/x-icon">
     <title>Proyecto Pandas</title>
@@ -24,20 +24,12 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #0894f8;">
-            <a class="navbar-brand" href="/index">Inicio</a>
+            <a class="navbar-brand" href="/">Inicio</a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="ABC_alumnos" aria-current="page"><span
-                                class="visually-hidden">(current)</span>Alumnos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="ABC_maestros" aria-current="page"><span
-                                class="visually-hidden">(current)</span>Maestros</a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -45,7 +37,7 @@
 
     <div class="container">
 
-        <img src="static/img/UA.jpg">
+        
         {%with messages=get_flashed_messages()%}
         {%if messages%}
         {%for message in messages%}
