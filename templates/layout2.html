@@ -17,7 +17,7 @@
     <!--Call CSS-->
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <link rel="icon" href="static/img/UA.jpg" type="image/x-icon">
+    <link rel="icon" href="{{url_for('static', filename='img/UA.jpg')}}" type="image/x-icon">
     <title>Proyecto Pandas</title>
 </head>
 
@@ -45,7 +45,7 @@
 
     <div class="container">
 
-        <img src="static/img/UA.jpg">
+        <img src="{{url_for('static', filename='img/UA.jpg')}}" alt="logo">
         {%with messages=get_flashed_messages()%}
         {%if messages%}
         {%for message in messages%}

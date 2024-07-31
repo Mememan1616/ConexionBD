@@ -20,7 +20,7 @@ import forms
 
 #importar el archivo de maestros y alumnos
 from alumnos.alumnos_rutas import alumnos
-#from maestros.maestro_rutas import
+from maestros.maestro_rutas import maestros
 
 app=Flask(__name__)
 #Invocamos nuestra clase Decvelopment config para hacer referencia a la base de datos
@@ -30,6 +30,7 @@ Material(app)
 #Creamos una variable que almacene el CSRF
 csrf=CSRFProtect()
 app.register_blueprint(alumnos)
+app.register_blueprint(maestros)
 
 
 @app.route("/index")#Rutas

@@ -64,7 +64,7 @@ def maestros_eliminar():
 
     return render_template('maestros_eliminar.html',form=maestro_form)
 
-@app.route("/maestros_modificar",methods=['GET','POST'])
+@maestros.route("/maestros_modificar",methods=['GET','POST'])
 def maestros_modificar():
     maestro_form=forms.MaestrosForm(request.form)
 
